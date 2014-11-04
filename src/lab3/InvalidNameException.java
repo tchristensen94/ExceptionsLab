@@ -7,4 +7,6 @@ class InvalidNameException extends IllegalArgumentException {
       {
          super(message);
       }
+      
+      
  }
