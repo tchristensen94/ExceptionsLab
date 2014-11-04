@@ -19,6 +19,10 @@ public class NameService {
      * @return the last name
      */
     public String extractLastName(String fullName) {
+        if(!validateName(fullName)) {
+            throw new InvalidNameException("Name null or less than two "
+                    + "characters or contains more than first/last name");
+        }
         String[] nameParts = fullName.split(" ");
         return nameParts[LAST_NAME_IDX];
     }
@@ -31,6 +35,10 @@ public class NameService {
      * @return the first name
      */
     public String extractFirstName(String fullName) {
+        if(!validateName(fullName)) {
+            throw new InvalidNameException("Name null or less than two "
+                    + "character or contains more than first/last name");
+        }
         String[] nameParts = fullName.split(" ");
         return nameParts[FIRST_NAME_IDX];
     }
@@ -43,6 +51,14 @@ public class NameService {
      */
     public int getNameLength(String name) {
         return name.length();
+    }
+    
+    private boolean validateName(String name) {
+        if(name == null || name.length() < 2) {
+            return false;
+        }
+        String[] nameParts = name.split(" ");
+        return nameParts.length != 2;
     }
     
 }
